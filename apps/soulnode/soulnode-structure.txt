@@ -1,0 +1,35 @@
+.
+├── .gitignore
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+│   └── vite.svg
+├── soulnode-structure.txt
+├── src
+│   ├── App.css
+│   ├── App.jsx
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── About.tsx
+│   │   ├── CallToAction.tsx
+│   │   ├── Features.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── HowItWorks.tsx
+│   │   ├── Layout.tsx
+│   │   ├── MockPortfolio.tsx
+│   │   ├── UseCases.tsx
+│   │   └── ValueProps.tsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── pages
+│       └── landing.tsx
+├── tailwind.config.js
+└── vite.config.js
+
+6 directories, 27 files
