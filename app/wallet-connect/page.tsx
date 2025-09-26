@@ -1,21 +1,54 @@
 'use client';
 
 import { useWallet } from '@meshsdk/react';
-// Update the path below to the correct location of WalletStatus in your project structure
+import {useState, useEffect} from 'react';
 import WalletStatus from '../components/WalletStatus';
+import {  useNetwork } from '@meshsdk/react';
+import { BrowserWallet } from '@meshsdk/core';  
 
 export default function WalletConnectPage() {
   const { connected, connecting, connect, disconnect, wallet } = useWallet();
+  const [address, setAddress] = useState ('');
+  const [balance, setbalance] = useState ('');
 
-  const handleConnect = async () => {
+useEffect(() => {
+  const fetchWalletinfo = async () => {
+    if (!wallet) return;
+
     try {
-      await connect('eternl');
+      const addr = await wallet.getChangeAddress();
+      setAddress(addr);
+      
+      const balanceObj = await wallet.getBalance();
+
+      const lovelace = balanceObj.find((asset: any) => asset.unit === "lovelace");
+      if (lovelace) {
+        const ada = (parseInt(lovelace.quantity) / 1_000_000).toFixed(2);
+        setbalance(ada);
+      }
     } catch (error) {
-      console.error('Failed to connect wallet:', error);
+      console.error('Failed to fetch wallet info:', error);
     }
   };
 
-  return (
+  fetchWalletinfo();
+}, [wallet]);
+const handleConnect = async () => {
+  const installedWallets = await BrowserWallet.getInstalledWallets();
+  if (!installedWallets.some(w => w.name === 'eternl')) {
+    alert("Eternl wallet is not installed!");
+    return;
+  }
+  try {
+    await connect('eternl');
+  } catch (error) {
+    console.error('Failed to connect wallet:', error);
+  }
+};
+
+ const network = useNetwork();
+ console.log ('Connected to Network:',network);
+ return (
     <main className="min-h-screen bg-slate-900 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
@@ -33,15 +66,15 @@ export default function WalletConnectPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-sm font-medium text-slate-400 mb-2">Wallet Name</h3>
-                  <p className="text-white font-medium">{(wallet as { name?: string })?.name || 'Unknown'}</p>
+                  <p className="text-white font-medium">{address || 'Not Available'}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-slate-400 mb-2">Network</h3>
-                  <p className="text-blue-400 font-medium">Cardano Mainnet</p>
+                  <p className="text-blue-400 font-medium">{network === 1 ? 'Cardano Mainnet' : 'Cardano Testnet'}</p>
                 </div>
                 <div className="md:col-span-2">
                   <h3 className="text-sm font-medium text-slate-400 mb-2">Wallet Address</h3>
-                  <p className="text-white font-mono text-sm break-all">{(wallet as { address?: string })?.address || 'Not available'}</p>
+                  <p className="text-white font-mono text-sm break-all">{address || 'Not available'}</p>
                 </div>
               </div>
             </div>
@@ -52,7 +85,7 @@ export default function WalletConnectPage() {
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-slate-700 rounded-lg">
                   <h3 className="text-sm font-medium text-slate-400 mb-2">ADA Balance</h3>
-                  <p className="text-2xl font-bold text-green-400">Loading...</p>
+                  <p className="text-2xl font-bold text-green-400">{balance ? `${balance} ADA` : 'Loading...'}</p>
                   <p className="text-xs text-slate-400">≈ $0.00 USD</p>
                 </div>
                 <div className="text-center p-4 bg-slate-700 rounded-lg">
