@@ -4,36 +4,43 @@ import { useWallet } from '@meshsdk/react';
 import {useState, useEffect} from 'react';
 import WalletStatus from '../components/WalletStatus';
 import {  useNetwork } from '@meshsdk/react';
-import { BrowserWallet } from '@meshsdk/core';  
+import { BrowserWallet, Wallet } from '@meshsdk/core';
 
 export default function WalletConnectPage() {
-  const { connected, connecting, connect, disconnect, wallet } = useWallet();
+  const { connected, connecting, connect, disconnect, wallet: connectedWallet } = useWallet();
   const [address, setAddress] = useState ('');
-  const [balance, setbalance] = useState ('');
+  const [balance, setBalance] = useState ('');
+  const [walletName, setWalletName] = useState('');
+  const network = useNetwork();
 
 useEffect(() => {
   const fetchWalletinfo = async () => {
-    if (!wallet) return;
+    if (!connectedWallet) return;
 
     try {
-      const addr = await wallet.getChangeAddress();
-      setAddress(addr);
-      
-      const balanceObj = await wallet.getBalance();
+      setWalletName('Eternl'); // Hardcoded since only Eternl is supported
+
+      const changeAddress = await connectedWallet.getChangeAddress();
+      setAddress(changeAddress);
+
+      const balanceObj = await connectedWallet.getBalance();
 
       const lovelace = balanceObj.find((asset: any) => asset.unit === "lovelace");
       if (lovelace) {
         const ada = (parseInt(lovelace.quantity) / 1_000_000).toFixed(2);
-        setbalance(ada);
+        setBalance(ada);
       }
     } catch (error) {
       console.error('Failed to fetch wallet info:', error);
     }
   };
 
-  fetchWalletinfo();
-}, [wallet]);
+  if (connected) {
+    fetchWalletinfo();
+  }
+}, [connectedWallet, connected]);
 const handleConnect = async () => {
+  const walletName = 'eternl'; // i only have eternl for now
   const installedWallets = await BrowserWallet.getInstalledWallets();
   if (!installedWallets.some(w => w.name === 'eternl')) {
     alert("Eternl wallet is not installed!");
@@ -46,8 +53,6 @@ const handleConnect = async () => {
   }
 };
 
- const network = useNetwork();
- console.log ('Connected to Network:',network);
  return (
     <main className="min-h-screen bg-slate-900 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,7 +71,7 @@ const handleConnect = async () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-sm font-medium text-slate-400 mb-2">Wallet Name</h3>
-                  <p className="text-white font-medium">{address || 'Not Available'}</p>
+                  <p className="text-white font-medium">{walletName || 'Not Available'}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-slate-400 mb-2">Network</h3>

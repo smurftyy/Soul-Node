@@ -6,6 +6,11 @@ import { usePathname } from 'next/navigation';
 const Navbar = () => {
   const pathname = usePathname();
 
+  // Hide navbar on home page
+  if (pathname === '/') {
+    return null;
+  }
+
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/social-connect', label: 'Social Connect' },
