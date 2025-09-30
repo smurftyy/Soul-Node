@@ -1,8 +1,16 @@
 # SoulNode
 
-**SoulNode** is a decentralized creative platform that combines portfolio showcasing, project collaboration, and token-based identity in one unified frontend experience. The goal is to give creatives and developers a place to share, co-create, and prove their work — *on-chain and off-chain*.
+**SoulNode** SoulNode is a Cardano-based trust layer that uses attestations to verify actions and soul points to measure user reputation. Together, they create a framework for socially impactful governance where active participants, not just wealthy stakers, shape the ecosystem.
 
----
+Attestations → Proof of engagement, tied to wallet actions.
+
+Soul Points → A non-monetary NFT-based incentive system representing reputation.
+
+Trust Layer → Endorsed by attestations, secured by Cardano, transparent by design.
+
+Governance Model → Attestations (engagement) + Soul Points (reputation) = decentralized governance framework.
+
+This ensures every participant, whether developer, staker, or user, has a chance at influence and governance not as a function of their resource but rather that of their engagement with the ecosystem.
 
 ## 🚧 Project Status
 
@@ -11,7 +19,7 @@ The backend and smart contract integrations are reserved for later stages post-h
 
 > ✅ UI components: Hero, Features, Use Cases, Value Propositions, CTA, Footer
 > 
-> 🚫 No backend / wallet / token logic yet
+>  Transaction, wallet and token logic
 > 
 > 🛠️ Built for scalability — componentized and tailwind-first
 
@@ -19,19 +27,15 @@ The backend and smart contract integrations are reserved for later stages post-h
 
 ## 🎯 Vision
 
-SoulNode aims to become the go-to playground for creatives and technologists who want:
-- Proof-of-Work powered portfolios
-- Collaborative micro-project launchpads
-- Token-gated contribution systems
-- Cross-network identity binding
+SoulNode exists to redefine governance in decentralized ecosystems. Instead of wealth dictating influence, we propose a balance of commitment, reputation, and engagement. In a world where proof-of-stake gives voting power to those holding the most resources, SoulNode introduces a trust layer built on attestations and reputation-driven soul points.
 
-A space where every contribution is linked, tokenized, and composable.
+Here, governance is no longer a measure of your stake size — it’s a measure of your contribution, visibility, and dedication to the Cardano ecosystem.
 
 ---
 
 ## 🧱 Tech Stack (Phase 1)
 
-- **Frontend Framework**: React + Vite
+- **Frontend Framework**: Next.js
 - **Styling**: Tailwind CSS
 - **Bundler**: Vite
 - **Component Structure**: TypeScript (for scalability)
@@ -60,38 +64,95 @@ apps/
 
 ---
 
-## 🧪 Features (Planned + Implemented)
+## 🧪 Features 
 
-| Feature | Status |
-|--------|--------|
-| Hero Banner with CTA | ✅ |
-| Feature List Section | ✅ |
-| Use Case Highlights | ✅ |
-| Value Proposition Cards | ✅ |
-| How it Works Section | 🔜 |
-| Animated Scroll | 🔜 |
-| Dark/Light Mode | 🔜 (Post-auth)
-| Wallet Connect | 🚫 (Future)
-| Project Feed | 🚫 (Future)
-| On-chain Portfolio Upload | 🚫 (Future)
+
+ The following are the features  that are currently live in the app:
+Attestation Cards → Blue-themed digital proof-of-engagement cards generated after actions (staking, minting, etc.).
+
+Soul Points → Reputation NFTs that grow with user activity and unlock governance weight.
+
+Social Connect → Network layer for users to interact, verify, and build reputation together.
+
+Profile System → Users create identities that anchor attestations and Soul Points.
+
+Governance Layer → Influence in the ecosystem is earned through activity, not just stake.
 
 ---
 
 ## 🛣️ Next Steps
 
 - [ ] Polish copywriting and marketing tone
-- [ ] Add dark/light theme switch (post-auth only)
-- [ ] Implement animation with Framer Motion
 - [ ] Mobile responsiveness and testing
 - [ ] Push to live preview (e.g., Vercel or Netlify)
+
+
+##  How It Works
+
+Connect Wallet → Users onboard with Cardano wallets.
+
+Set Up Profile → Identity creation anchors all activity.
+
+Engage → Actions like staking, minting, or other ecosystem contributions trigger attestations.
+
+Attestation Cards → Generated instantly as proof, containing key wallet + activity metadata.
+
+Soul Points → Issued as reputation rewards; displayed on attestation cards.
+
+Track Growth → Users can view accumulated points and attestations over time.
+
+Governance Participation → Reputation + engagement, not just financial stake, defines influence.
 
 ---
 
 ## 🔗 Contributing
 
 This is a **solo dev sprint** for now. Contributions are closed until MVP is stable. If you’re interested in contributing later (design, contracts, frontend, copy), ping `@xanesfkasmurftyy` on GitHub.
+SoulNode is open to developers, designers, and researchers who want to help shape this new governance framework.
+
+Smart Contracts → Extend or refine Aiken-based contracts.
+
+Frontend → Strengthen Next.js + Mesh.js integration.
+
+Research → Collaborate on governance modeling and scaling.
+
+For now, the project is built solo, but contributions are welcome. The goal is to bridge the skill and vision gap by inviting aligned developers and thinkers to join.
 
 ---
+## Development Roadmap
+
+Phase 1 – Development & Testing
+
+Build SoulPoint distribution algorithm
+
+Core UI/UX flow with attestation cards
+
+Wallet connect integration
+
+Phase 2 – Beta & Testnet
+
+Deploy contracts on Cardano testnet
+
+Expand attestation triggers
+
+Feedback and refinement cycle
+
+Phase 3 – Social Awareness & Adoption
+
+Community onboarding campaign
+
+Extend for mobile and desktop formats
+
+Governance model testing with live users
+
+Phase 4 – Production & Scale
+
+Launch on Cardano mainnet
+
+Expand SoulNode features beyond MVP
+
+Support for developer integrations and extended governance modules
+
 
 ## 📜 License
 
@@ -106,6 +167,7 @@ Thanks to:
 - Tailwind Labs for elegant utility-first styling
 - YouTube + sleepless nights
 -Gimbalabs Africa initiative
+-Next.js 
 ---
 
 ## 🧠 Notes 
@@ -114,5 +176,7 @@ Thanks to:
 - Smart contract layer may be built in Aiken (Cardano)
 - Token logic may use CIP-68 metadata standard
 - Auth system could integrate Lucid/Mesh + wallet SSO
+- Whitepaper and Demo vid in a bit 
+- Presentation link almost ready.
 
 For now: **keep it clean, sharp, and componentized**.
