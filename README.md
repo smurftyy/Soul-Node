@@ -177,6 +177,6 @@ Thanks to:
 - Token logic may use CIP-68 metadata standard
 - Auth system could integrate Lucid/Mesh + wallet SSO
 - Whitepaper and Demo vid in a bit 
-- Presentation link almost ready.
+- Presentation link ; https://gamma.app/docs/SoulNode-bw3eywget3am540.
 
 For now: **keep it clean, sharp, and componentized**.
