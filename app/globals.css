@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 .glow {
-  text-shadow: 0 0 10px #c0c0c0, 0 0 20px #c0c0c0, 0 0 30px #c0c0c0;
+  text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 30px #3b82f6;
 }
 
 :root {
-  --background: #f5f5f5;
-  --foreground: #2d2d2d;
-  --accent: #c0c0c0;
-  --highlight: #ffffff;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --accent: #3b82f6;
+  --highlight: #1e3a8a;
 }
 
 @theme inline {

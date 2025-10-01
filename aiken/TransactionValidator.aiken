@@ -1,0 +1,37 @@
+;; AIKEN smart contract for transaction validation and attestation data extraction
+
+(defmodule transaction-validator
+
+  ;; Define a record for transaction details
+  (defrecord TransactionDetails
+    (tx-id :bytes)
+    (tx-type :string)
+    (issuer-did :string)
+    (holder-did :string)
+    (claim-type :string)
+    (commitment-period :string)
+    (schema-id :string)
+    (timestamp :int)
+    (block-number :int)
+    (soul-points :int))
+
+  ;; Validate transaction type and extract details
+  (defun validate-transaction (tx)
+    (let ((tx-type (get tx "type"))
+          (tx-id (get tx "id"))
+          (issuer-did (get tx "issuer_did"))
+          (holder-did (get tx "holder_did"))
+          (claim-type (get tx "claim_type"))
+          (commitment-period (get tx "commitment_period"))
+          (schema-id (get tx "schema_id"))
+          (timestamp (get tx "timestamp"))
+          (block-number (get tx "block_number"))
+          (soul-points (get tx "soul_points")))
+      (if (and tx-type tx-id issuer-did holder-did claim-type commitment-period schema-id timestamp block-number soul-points)
+        (ok (TransactionDetails tx-id tx-type issuer-did holder-did claim-type commitment-period schema-id timestamp block-number soul-points))
+        (err "Invalid transaction data"))))
+
+  ;; Entry point for validation
+  (defun validate (tx)
+    (validate-transaction tx))
+)

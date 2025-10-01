@@ -16,9 +16,11 @@
     "axios": "^1.11.0",
     "framer-motion": "^12.23.22",
     "ipfs-http-client": "^60.0.1",
+    "lucide-react": "^0.544.0",
     "next": "15.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.16.0",
     "zod": "^4.0.17"
   },
   "devDependencies": {
